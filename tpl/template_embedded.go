@@ -156,7 +156,11 @@ func (t *GoHTMLTemplate) EmbedTemplates() {
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>{{end}}`)
-
+	t.AddInternalTemplate("", "isso.html", `{{ if .Site.IssoUrl }}<section id="isso-thread"></section>
+<script data-isso="{{ .Site.IssoUrl }}"
+        src="{{ .Site.IssoUrl }}/js/embed.min.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://posativ.org/isso/">comments powered by Isso.</a></noscript>
+{{end}}`)
 	// Add SEO & Social metadata
 	t.AddInternalTemplate("", "opengraph.html", `<meta property="og:title" content="{{ .Title }}" />
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
